@@ -15,11 +15,12 @@ public class Problema6 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int h,p,x;
+        int h,p,x,n;
         h=getHoras();
         p=getPaga();
         x=horaExt(h);
-        sueldo(h,p,x);
+        n=horasNetas(h,x);
+        sueldo(p,n,x);
     }
     public static int getHoras(){
         int horas;
@@ -35,17 +36,14 @@ public class Problema6 {
         paga=teclado.nextInt();
         return paga;
     }
-    public static void sueldo(int paga, int horas,int horasExtra){
-        double sueldo=((paga*horas)+(paga*horasExtra));
-        System.out.println("El sueldo del empleado es: $"+sueldo);
-    }
+   
     
     public static int horaExt(int horas){   
         int horasExtra=0;
-        if (horas>40){
-            horasExtra=(horas-40);
-            
-        }if (horasExtra<=8){
+            if (horas>40){
+            horasExtra=horas-40;
+        }
+        if (horasExtra<=8){
                     horasExtra=horasExtra*2;
             }else if(horasExtra>8){
                             horasExtra=horasExtra*3;
@@ -53,4 +51,12 @@ public class Problema6 {
             }    
     return horasExtra;
     }
+    public static int horasNetas(int horas, int horasExtra){
+        int horasNetas=horas-horasExtra;
+        return horasNetas;
+    }
+     public static void sueldo(int paga, int horasNetas,int horasExtra){
+        double sueldo=((paga*horasNetas)+(paga*horasExtra));
+        System.out.println("El sueldo del empleado es: $"+sueldo);
+     }
 }
